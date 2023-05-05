@@ -145,8 +145,8 @@ def ECmin(L,x):
 def EC1(L,x):
     return abs((L[x] - 1 ) / 1)
 
-P = [ (ECmax(RPerCluster,x) + ECmax(TPerCluster,x) + ECmin(CorrPerCluster,x) + ECmin(NearPerCluster,x) + EC1(MPerCluster,x) + EC1(BPerCluster,x) + ECmin(rTPerCluster,x) ,
-       ECmin(RPerCluster,x) + ECmin(TPerCluster,x) + ECmax(CorrPerCluster,x) + ECmax(NearPerCluster,x) - EC1(MPerCluster,x) - EC1(BPerCluster,x) + ECmax(rTPerCluster,x) )
+P = [ (ECmax(RPerCluster,x) + ECmax(TPerCluster,x) + ECmin(NearPerCluster,x) + EC1(MPerCluster,x) + EC1(BPerCluster,x) + ECmin(rTPerCluster,x) ,
+       ECmin(RPerCluster,x) + ECmin(TPerCluster,x) +  ECmax(NearPerCluster,x) - EC1(MPerCluster,x) - EC1(BPerCluster,x) + ECmax(rTPerCluster,x) )
        for x in range(len(TPerCluster))
        ]
 
@@ -312,19 +312,6 @@ plt.grid()
 
 plt.savefig(parameters.folder_output+'/graph/SOMmap.png')
 
-# PLOT THE  SCATTER DISTRIBUTION
-plt.figure(figsize=(27, 7))
-plt.subplot(1,3,1)
-plt.scatter(CorrPerCluster,TPerCluster,c=clust_id)
-plt.xlabel('correlation');plt.ylabel('T (in days)')
-plt.subplot(1,3,2)
-plt.scatter(RPerCluster,TPerCluster,c=clust_id)
-plt.xlabel('R (in km)');plt.ylabel('T (in days)')
-plt.subplot(1,3,3)
-plt.scatter(CorrPerCluster,RPerCluster,c=clust_id)
-plt.xlabel('correlation');plt.ylabel('R (in km)')
-
-plt.savefig(parameters.folder_output+'/graph/scatter.png')
 # PLOT THE CUMULATIVE CURVE
 print(par['classe'].value_counts())
 

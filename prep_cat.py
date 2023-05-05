@@ -3,7 +3,7 @@ import parameters
 from datetime import datetime
 
 #reading the catalogue
-cat = pd.read_csv(parameters.cat_raw,sep=None)
+cat = pd.read_csv(parameters.cat_raw,sep=None, engine='python')
 #cat = pd.read_csv(parameters.cat_raw,delim_whitespace=True)
 
 #create a datetime colum
@@ -11,7 +11,7 @@ if 'Time' in cat.columns and 'Date' in cat.columns:
 	time = pd.to_datetime(cat.Date+'T'+cat.Time.replace(":60.",":59.", regex=True), format='%Y-%m-%dT%H:%M:%S')
 	cat['time'] = time
 elif 'time' in cat.columns :
-	time = pd.to_datetime(cat.time, format='%Y-%m-%dT%H:%M:%S')
+	time = pd.to_datetime(cat.time)
 	cat['time'] = time
 elif '% Year' in cat.columns :
 	Tframe = cat[['% Year','Day','Month','Hour','Minute','Sec']].rename(columns = {'Minute':'minute','% Year':'year','Day':'day','Hour':'hours','Month':'month','Sec':'second'})

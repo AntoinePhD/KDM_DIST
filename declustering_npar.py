@@ -1,11 +1,8 @@
 # import lib
 import pandas as pd
-import obspy
-from obspy.signal.cross_correlation import correlate, xcorr_max
 from scipy.stats import kurtosis
 import os
 import numpy as np
-from bib import haversine
 import parameters
 from output.CTD import T,D
 from tqdm import tqdm
@@ -20,7 +17,6 @@ cat['time'] = dtime
 # some parameter to set
 st_id = 11  # the min is 11
 ed_id = len(cat.time)
-step_save = parameters.step_save  # save each step_save result (if to small may greatly slow down the computation)
 
 from multiprocessing import Pool
 
