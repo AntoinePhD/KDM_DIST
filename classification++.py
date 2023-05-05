@@ -123,47 +123,21 @@ yCluster= np.array([ np.mean(cross.query('cluster=='+str(x))['w_y']) for x in cl
 cross = cross.rename(columns={"maxmean": "Cj"})
 
 idy=['','1','2','3','4','5','6','7','8','9']
-#idy=['']
-
-
-
-#CorrPerCluster =  [ np.mean([np.mean(cross.query('cluster=='+str(x))['Cj'+y]) for y in idy]) for x in clust_id]
-CorrPerCluster =  [ 1  for x in clust_id]
 RPerCluster =  [ np.mean([np.mean(cross.query('cluster=='+str(x))['Rj'+y]) for y in idy]) for x in clust_id ]
 TPerCluster =  [ np.mean([np.mean(cross.query('cluster=='+str(x))['Tj'+y]) for y in idy]) for x in clust_id]
 NearPerCluster =  [ np.mean([np.mean(cross.query('cluster=='+str(x))['Nnear']) for y in ['']]) for x in clust_id ]
 MPerCluster =  [ np.mean([np.mean(cross.query('cluster=='+str(x))['intensity_norm']) for y in ['']]) for x in clust_id]
+
 if 'bval' in Features:
     BPerCluster = [ np.mean([np.mean(cross.query('cluster=='+str(x))['bval']) for y in ['']]) for x in clust_id]
 else:
     BPerCluster = [1] * len(clust_id)
+
 if 'r2_Tj' in Features:
     rTPerCluster = [ np.mean([np.mean(cross.query('cluster=='+str(x))['r2_Tj']) for y in ['']]) for x in clust_id]
 else:
     rTPerCluster = [1] * len(clust_id)
-rRPerCluster = [ np.mean([np.mean(cross.query('cluster=='+str(x))['r2_Rj']) for y in ['']]) for x in clust_id]
 
-## adding the 4 corner
-poids=som.get_weights()[:,:,:]
-parameters.Features
-
-"""
-# P with Near and Intensity
-P = [
-    (abs(np.max(RPerCluster) -  RPerCluster[x])/np.max(RPerCluster) + abs(np.max(TPerCluster) - TPerCluster[x])/np.max(TPerCluster) + abs(np.min(CorrPerCluster) - CorrPerCluster[x])/np.min(CorrPerCluster) + abs(np.min(NearPerCluster) - NearPerCluster[x])/np.min(NearPerCluster)+ abs(np.min(MPerCluster) - MPerCluster[x])/np.min(MPerCluster),
-    abs(np.min(RPerCluster) -  RPerCluster[x])/np.min(RPerCluster) + abs(np.min(TPerCluster) - TPerCluster[x])/np.min(TPerCluster) + abs(np.max(CorrPerCluster)  - CorrPerCluster[x])/np.max(CorrPerCluster) + abs(np.max(NearPerCluster) - NearPerCluster[x])/np.max(NearPerCluster)+ abs(np.max(MPerCluster) - MPerCluster[x])/np.max(MPerCluster))
-     for x in range(len(TPerCluster))
-]
-
-# P without Near and Intensity
-P = [
-    (abs(np.max(RPerCluster) -  RPerCluster[x])/np.max(RPerCluster) + abs(np.max(TPerCluster) - TPerCluster[x])/np.max(TPerCluster) + abs(np.min(CorrPerCluster) - CorrPerCluster[x])/np.min(CorrPerCluster),
-    abs(np.min(RPerCluster) -  RPerCluster[x])/np.min(RPerCluster) + abs(np.min(TPerCluster) - TPerCluster[x])/np.min(TPerCluster) + abs(np.max(CorrPerCluster)  - CorrPerCluster[x])/np.max(CorrPerCluster))
-     for x in range(len(TPerCluster))
-]
-"""
-
-# P with Near and Intensity capé
 def ECmax(L,x):
     return (np.max(L) - L[x]) / np.max(L)
 def ECmin(L,x):
@@ -175,12 +149,7 @@ P = [ (ECmax(RPerCluster,x) + ECmax(TPerCluster,x) + ECmin(CorrPerCluster,x) + E
        ECmin(RPerCluster,x) + ECmin(TPerCluster,x) + ECmax(CorrPerCluster,x) + ECmax(NearPerCluster,x) - EC1(MPerCluster,x) - EC1(BPerCluster,x) + ECmax(rTPerCluster,x) )
        for x in range(len(TPerCluster))
        ]
-"""
-P = [ (ECmax(RPerCluster,x) + ECmax(TPerCluster,x) + EC1(NearPerCluster,x)  + EC1(BPerCluster,x) + abs(ECmin(rTPerCluster,x)) + abs(ECmin(rRPerCluster,x)) ,
-       ECmin(RPerCluster,x) + ECmin(TPerCluster,x) + EC1(NearPerCluster,x) - EC1(BPerCluster,x) + abs(ECmax(rTPerCluster,x)) + abs(ECmin(rRPerCluster,x)) )
-       for x in range(len(TPerCluster))
-       ]
-"""
+
 #P = (rep, back)
 Probability = [ (np.exp(P[x][0])/np.sum(np.exp(P[x])),np.exp(P[x][1])/np.sum(np.exp(P[x]))) for x in range(len(P)) ]
 p_r = [ x[0] for x in Probability ]
@@ -269,75 +238,7 @@ cbar.set_label('Map of uncertainty', rotation=270,labelpad=20)
 plt.xlabel('x coordinate of the nodes')
 plt.ylabel('y coordinate of the nodes')
 plt.savefig(parameters.folder_output+'/graph/class++3.png')
-"""
-grid_x, grid_y = np.mgrid[0:1:150j, 0:1:150j]*parameters.n_neurons
-point=np.transpose(np.array([xCluster,yCluster[:-4]]))
-grid_z2 = griddata(point, p_b,(grid_x, grid_y), method='nearest')
-masked = np.ma.masked_where(grid_z2.T>=0, grid_z2.T)
 
-plt.figure(figsize=(30, 9))
-plt.subplot(1,3,1)
-grid_x, grid_y = np.mgrid[0:1:150j, 0:1:150j]*parameters.n_neurons
-point=np.transpose(np.array([xCluster,yCluster]))
-grid_z1 = griddata(point, p_b,(grid_x, grid_y), method='nearest')
-Proba_grid_back = grid_z1.T
-#plt.title('proba_back par cluster')
-masked = np.ma.masked_where(np.isnan(grid_z2.T), grid_z1.T)
-plt.imshow(masked,extent=(0,parameters.n_neurons,0,parameters.n_neurons), origin='lower', alpha= 1)
-plt.imshow(grid_z1.T,extent=(0,parameters.n_neurons,0,parameters.n_neurons), origin='lower', alpha= 0.9)
-plt.scatter(cross.w_x, cross.w_y, s=5, facecolors='white', edgecolors='none', alpha = 0.05)
-
-cbar = plt.colorbar(alpha=1)
-cbar.set_alpha(1)
-cbar.draw_all()
-plt.clim(0,1)
-
-cbar.set_label('Probability for an event to be a Non Crisis Event', rotation=270,labelpad=20)
-plt.xlabel('x coordinate of the nodes')
-plt.ylabel('y coordinate of the nodes')
-
-plt.subplot(1,3,2)
-grid_x, grid_y = np.mgrid[0:1:150j, 0:1:150j]*parameters.n_neurons
-point=np.transpose(np.array([xCluster,yCluster]))
-grid_z1 = griddata(point, p_r,(grid_x, grid_y), method='nearest')
-#plt.title('proba_back par cluster')
-masked = np.ma.masked_where(np.isnan(grid_z2.T), grid_z1.T)
-plt.imshow(masked,extent=(0,parameters.n_neurons,0,parameters.n_neurons), origin='lower', alpha= 1)
-plt.imshow(grid_z1.T,extent=(0,parameters.n_neurons,0,parameters.n_neurons), origin='lower', alpha= 0.9)
-plt.scatter(cross.w_x, cross.w_y, s=5, facecolors='white', edgecolors='none', alpha = 0.05)
-
-cbar = plt.colorbar(alpha=1)
-cbar.set_alpha(1)
-cbar.draw_all()
-plt.clim(0,1)
-plt.clim(0,1)
-
-cbar.set_label('Probability for an event to be a Crisis Event', rotation=270,labelpad=20)
-plt.xlabel('x coordinate of the nodes')
-plt.ylabel('y coordinate of the nodes')
-
-plt.subplot(1,3,3)
-grid_x, grid_y = np.mgrid[0:1:150j, 0:1:150j]*parameters.n_neurons
-point=np.transpose(np.array([xCluster,yCluster]))
-grid_z1 = griddata(point, p_a,(grid_x, grid_y), method='nearest')
-#plt.title('proba_back par cluster')
-#plt.imshow(rnpnv(grid_z1.T),extent=(0,parameters.n_neurons,0,parameters.n_neurons), origin='lower', alpha=0.7)
-masked = np.ma.masked_where(np.isnan(grid_z2.T), grid_z1.T)
-plt.imshow(masked,extent=(0,parameters.n_neurons,0,parameters.n_neurons), origin='lower', alpha= 1)
-plt.imshow(grid_z1.T,extent=(0,parameters.n_neurons,0,parameters.n_neurons), origin='lower', alpha= 0.9)
-plt.scatter(cross.w_x, cross.w_y, s=5, facecolors='white', edgecolors='none', alpha = 0.05)
-incertitude_grid = grid_z1.T
-
-cbar = plt.colorbar(alpha=1)
-cbar.set_alpha(1)
-cbar.draw_all()
-plt.clim(0,1)
-
-cbar.set_label('Map of uncertainty', rotation=270,labelpad=20)
-plt.xlabel('x coordinate of the nodes')
-plt.ylabel('y coordinate of the nodes')
-plt.savefig(parameters.folder_output+'/graph/class++3.png')
-"""
 # adding result to dataframe
 ev_incertitude = [-999] * len(data)
 ev_Probability = [-999] * len(data)
@@ -447,20 +348,3 @@ fig.write_image(parameters.folder_output+'/graph/backmap.png')
 fig = px.scatter_mapbox(cross.query('classe == "rep" '), lat="lat", labels=repback_rename,lon="lon", hover_name="mag", zoom=7, height=600,color_discrete_sequence=['orange'])
 fig.update_layout(mapbox_style="stamen-terrain")
 fig.write_image(parameters.folder_output+'/graph/repmap.png')
-
-poids=som.get_weights()[:,:,:30]
-poids[:,:,2:12] = 1 - poids[:,:,2:12]
-poids_max=np.max(np.max(poids,0),0)
-poid_prob=np.sum(poids/poids_max,2)
-prob_back= 1/(1+0.8*np.exp(-poid_prob+0.65))
-
-parameters_plot = {'axes.labelsize': 17,
-          'axes.titlesize': 35}
-plt.rcParams.update(parameters_plot)
-plt.figure(figsize=(10, 9))
-plt.imshow(np.transpose(prob_back),extent=(0,parameters.n_neurons,0,parameters.n_neurons), origin='lower')
-cbar= plt.colorbar()
-cbar.set_label('Probability from node weight to be a Non Crisis event', rotation=270,labelpad=20)
-plt.xlabel('x coordinate of the nodes')
-plt.ylabel('y coordinate of the nodes')
-plt.savefig(parameters.folder_output+'/graph/probmap.png')
