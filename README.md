@@ -6,9 +6,8 @@ Please cite any usage of this code in your publication
 ### Requirement
 This code is based on Python3 and  Fortran 90 
 The following python librairie are needed : 
-'''
-os 
-subprocess
+```
+subbprocess
 pandas
 glob
 numpy 
@@ -17,13 +16,13 @@ scipy
 tqdm
 sklearn
 minisom
-'''
+```
 optional : 
-'''
+```
 matplotlib
 pyplot
-'''
-For fortran the compiler gfortran is needed
+```
+For fortran the compiler `gfortran` is needed
 
 ### Quick start
 After cloning the repository
