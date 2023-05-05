@@ -17,10 +17,10 @@ tqdm
 sklearn
 minisom
 ```
-optional : 
+For the Graphical output: 
 ```
 matplotlib
-pyplot
+seaborn
 ```
 For fortran the compiler `gfortran` is needed
 
