@@ -2,7 +2,7 @@
 cat_raw = '/home/septier/PhdFolder/GOC/waveform_cat_raw.csv' # the catalog to decluster
 cat_formated = 'cat_formated.csv'# the name of the produced formatted catalog
 folder_output = 'output' # /!\ do not change it /!\ input the path of the wanted output folder (it will be created or erased and then created)
-
+cpu = 8 # Number of cpu usable
 
 
 ## Declustering parameter computation arg

@@ -22,12 +22,16 @@ For the Graphical output:
 matplotlib
 seaborn
 ```
+You can install all the package with 
+```
+pip install -r requirement.txt
+```
+
 For fortran the compiler `gfortran` is needed
 
 ### Quick start
 After cloning the repository
 
-1. Set the information in the paramaters.py
-2. run the main.py 
-
-
+0. Install requirement
+1. Set the information in the paramaters.py (read the comment as some parameters have to be set in the .f90 files)
+2. Run the main.py in the KDM folder

@@ -45,7 +45,7 @@ def fp(j, cat=cat):
 
 if __name__ == '__main__':
     __spec__ = "ModuleSpec(name='builtins', loader=<class '_frozen_importlib.BuiltinImporter'>)"
-    with Pool(8) as p:
+    with Pool(parameters.cpu) as p:
         pool = p.map(fp, list(range(st_id, ed_id)))
 
     etj = [x[0] for x in pool]

@@ -29,7 +29,7 @@ os.mkdir(parameters.folder_output+'/graph')
 subprocess.call(['python',"prep_cat.py"])
 
 ## Find T,D
-
+print('---------  Compute the quartile of time and space distance --------- ')
 # Find T,D
 proc = os.popen("./time_distance_test").read()
 TD = proc.split()
@@ -49,13 +49,16 @@ input('press enter after changing the space and time norme in tennearest.f90')
 os.popen('gfortran tennearest.f90 -o tennearest')
 
 # start the calculation of neighbours distance
+print('---------  Compute declustering features --------- ')
 subprocess.call(['python',"declustering_npar.py"])
 
 # calculate magnitude intensity
 subprocess.call(['python',"intensity.py"])
 
 ## Train SOM
+print(' ---------  Trains the models --------- ')
 subprocess.call(['python',"Create_SOM.py"])
 
 ## Do classification
+print('--------- Apply the models --------- ')
 subprocess.call(['python',"classification++.py"])

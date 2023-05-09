@@ -42,7 +42,9 @@ elif 'Mc' in cat.columns:
 if 'Lon' in cat.columns:
 	cat['lon'] = cat['Lon']
 elif 'Longitude' in cat.columns:
-		cat['lon'] = cat['Longitude']
+	cat['lon'] = cat['Longitude']
+elif 'lon' in cat.columns:
+	pass
 else:
 	cat['lon'] = cat['longitude']
 
@@ -50,6 +52,8 @@ if 'Lat' in cat.columns:
 	cat['lat'] = cat['Lat']
 elif 'Latitude' in cat.columns:
 	cat['lat'] = cat['Latitude']
+elif 'lat' in cat.columns:
+	pass
 else:
 	cat['lat'] = cat['latitude']
 
