@@ -79,13 +79,14 @@ for ibg in tqdm(range(len(data))):
     data.r2_Tj[ibg]=max(rt,0.65)
 
     if np.sum(filt)==0 or np.sum(filt2)==0 or np.mean(data.mag[filt])==0:
-        data.Nnear[ibg] = 0
+        data.Nnear[ibg] = 1
         data.intensity[ibg] = 1
         data.intensity_norm[ibg] = 1
         data.bval[ibg] = 1
         if np.sum(filt)>1:
             data.bval[ibg] = bval_regress(data.mag[filt3])
             data.intensity[ibg] = np.mean(data.mag[filt])
+            data.Nnear[ibg] = np.sum(filt)/np.sum(filt3)
     else:
         data.bval[ibg] = bval_regress(data.mag[filt3])
         data.Nnear[ibg] = np.sum(filt2)/np.sum(filt)

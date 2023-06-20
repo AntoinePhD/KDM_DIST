@@ -14,8 +14,8 @@ taille_cat = 33119 #  size of the catalog must be set manualy in the f90, before
 ## SOM map parameters
 model_name = 'som_model.p' # name of the output SOM model
 
-n_neurons = 150 # height of the map
-m_neurons = 150 # width of the map
+n_neurons = 4 # height of the map
+m_neurons = 4 # width of the map
 
 iteration = 5000 # number of iteration
 NSample = 2000 # number of sample used in the training
