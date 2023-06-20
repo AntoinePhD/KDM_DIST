@@ -51,8 +51,6 @@ data['Nnear'] = [-999]*len(data)
 data['intensity'] = [-999]*len(data)
 data['intensity_norm'] = [-999]*len(data)
 data['bval'] = [-999]*len(data)
-data['r2_Rj'] = [-999]*len(data)
-data['r2_Tj'] = [-999]*len(data)
 
 fd = max(CTD.T,2) # days
 fk = max(CTD.D,2) # km
@@ -70,13 +68,6 @@ for ibg in tqdm(range(len(data))):
     filt3 = (np.sqrt((data.lat - lat) ** 2 + (data.lon - lon) ** 2) * 100 <= 5*fk) * (abs(data.years - t) > 0) * (
                 abs(data.years - t) <= fd*5 / 365)
     filt2 = (np.sqrt((data.lat-lat)**2 + (data.lon-lon)**2)*100 <= fk/2) * ((data.years - t) < 0) * (abs(data.years-t) <= fd/(2*365))
-
-    Zt = [data['Tj' + str(k)].iloc[ibg] for k in ['', 1, 2, 3, 4, 5, 6, 7, 8, 9]]
-    Zr = [data['Rj' + str(k)].iloc[ibg] for k in ['', 1, 2, 3, 4, 5, 6, 7, 8, 9]]
-    rt, f, g = tri_reg(Zt)
-    rr, f, g = tri_reg(Zr)
-    data.r2_Rj[ibg]=max(rr,0.65)
-    data.r2_Tj[ibg]=max(rt,0.65)
 
     if np.sum(filt)==0 or np.sum(filt2)==0 or np.mean(data.mag[filt])==0:
         data.Nnear[ibg] = 1

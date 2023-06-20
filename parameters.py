@@ -23,4 +23,4 @@ NSample = 2000 # number of sample used in the training
 # definne the name of the features you want to use
 Features = ['Rj', 'Tj',
              'Tj1', 'Tj2', 'Tj3', 'Tj4', 'Tj5', 'Tj6', 'Tj7', 'Tj8', 'Tj9',
-             'Rj1', 'Rj2', 'Rj3', 'Rj4', 'Rj5', 'Rj6', 'Rj7', 'Rj8', 'Rj9','bval','intensity_norm','Nnear','r2_Tj']
+             'Rj1', 'Rj2', 'Rj3', 'Rj4', 'Rj5', 'Rj6', 'Rj7', 'Rj8', 'Rj9','bval','intensity_norm']
