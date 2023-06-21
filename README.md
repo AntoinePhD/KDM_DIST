@@ -1,8 +1,8 @@
 # KDM_DIST
-This is a declustering algorythm produced by [Septier&al](https://www.authorea.com/doi/full/10.22541/essoar.168167340.09761738)
+KDM (Kohonen map based Declustering Methode) is a declustering algorythm produced by [Septier&al](https://www.authorea.com/doi/full/10.22541/essoar.168167340.09761738)
 Please cite any usage of this code in your publication
 
-Declustering is in our case providing a classification between non-crisis and crisis eathquakes of a sismological catalague.
+Declustering is in our case providing a classification between non-crisis and crisis earthquakes of a sismological catalague.
 Non crisis event beging event that can't be link to any event prior to it (exemple of possible non_crisis: Lone event, mainshock, foreshock ...) and Crisis event earthquake that can be link to a preveious event (exemple : Aftershocks, Swarms, Geothermally induced event)
 
 To do that we use an Self Organized map (SOM). SOM [(Vettigli&al)](https://github.com/JustGlowing/minisom) is an unsupervised neural network-based algorithm used to represent a high-dimensional dataset as a low-dimensional (usually 2D) discretised pattern. The dimensionality reduction is performed while maintaining the topological structure of the input data.
@@ -20,8 +20,8 @@ To obtain a relevant classification of each event class, we develop a centroid-b
 At the end of the process we obtain an average of 89.5% of balanced accuracy on synthetic catalogues. 
 ## Usage
 ### Requirement
-This code is based on Python3 and  Fortran 90 
-The following python librairie are needed : 
+This code use Python (> version 3) and Fortran 90 
+The following python library are needed : 
 ```
 subbprocess
 pandas
@@ -32,18 +32,16 @@ scipy
 tqdm
 sklearn
 minisom
-```
-For the Graphical output: 
-```
 matplotlib
 seaborn
 ```
-You can install all the package with 
+You can install all the package after pull from the GitHub with the command :
 ```
 pip install -r requirement.txt
 ```
+I recommend you to use conda to create a new environment for this code if you use other python programs. 
 
-For fortran the compiler `gfortran` is needed
+For fortran the compiler `gfortran` is needed (see [the installation guide](https://fortran-lang.org/en/learn/os_setup/install_gfortran/) if you are not used to fortran)
 
 ### Quick start
 After cloning the repository
