@@ -19,7 +19,7 @@ To obtain a relevant classification of each event class, we develop a centroid-b
 ) .
 
 At the end of the process we obtain an average of 89.5% of balanced accuracy on synthetic catalogues. 
-## Usage
+## Usage
 ### Requirement
 This code use Python (> version 3) and Fortran 90 
 The following python library are needed : 
