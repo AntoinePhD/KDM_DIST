@@ -1,7 +1,8 @@
 # KDM_DIST
-KDM (Kohonen map based Declustering Methode) is a declustering algorythm produced by [Septier&al](https://www.authorea.com/doi/full/10.22541/essoar.168167340.09761738)
-Please cite any usage of this code in your publication
+KDM (Kohonen map based Declustering Methode) is a declustering algorythm produced by [Septier&al](https://www.authorea.com/doi/full/10.22541/essoar.168167340.09761738) .
 
+Please cite any usage of this code in your publication
+## Abstract
 Declustering is in our case providing a classification between non-crisis and crisis earthquakes of a sismological catalague.
 Non crisis event beging event that can't be link to any event prior to it (exemple of possible non_crisis: Lone event, mainshock, foreshock ...) and Crisis event earthquake that can be link to a preveious event (exemple : Aftershocks, Swarms, Geothermally induced event)
 
