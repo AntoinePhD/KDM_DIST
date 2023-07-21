@@ -1,9 +1,10 @@
 ! Created by  on 03/05/2022.
 PROGRAM main
     implicit none
+
+    include 'output/fvar.f'
     !-- Variable definion
     INTEGER :: n, i, j, father_id, father_id2 , jj
-    INTEGER, PARAMETER :: taille_cat = 1341  !40171 !9073 !33119 ! true cat lenght ATTENTION must be superior or egal to the argument "j"
     DOUBLE PRECISION, DIMENSION(taille_cat) :: Rji, Tji, Tj, Rj, AR, AT
     DOUBLE PRECISION :: T, R ,a
     LOGICAL, DIMENSION(taille_cat) :: mask, mask2

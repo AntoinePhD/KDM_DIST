@@ -12,6 +12,10 @@ import os
 from tqdm import tqdm
 import output.CTD as CTD
 from sklearn.metrics import r2_score
+import warnings
+
+# just to make the terminal clearer can be commented if needed
+warnings.filterwarnings("ignore")
 
 def bval_regress(mag, plot=False):
     box1 = np.arange(1, 6, 1)

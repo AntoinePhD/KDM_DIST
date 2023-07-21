@@ -6,6 +6,10 @@ import numpy as np
 import parameters
 from output.CTD import T,D
 from tqdm import tqdm
+import warnings
+
+# just to make the terminal clearer can be commented if needed
+warnings.filterwarnings("ignore")
 
 # open cat
 cat = pd.read_csv(parameters.folder_output+'/'+parameters.cat_formated)

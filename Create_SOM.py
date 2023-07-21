@@ -4,6 +4,10 @@ import pandas as pd
 import numpy as np
 import parameters
 from tqdm import tqdm
+import warnings
+
+# just to make the terminal clearer can be commented if needed
+warnings.filterwarnings("ignore")
 
 ## PARAMETERS
 model_name = parameters.folder_output+'/'+parameters.model_name

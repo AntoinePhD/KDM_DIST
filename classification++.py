@@ -11,6 +11,11 @@ import plotly.express as px
 from tqdm import tqdm
 
 from sklearn.cluster import AgglomerativeClustering
+import warnings
+
+# just to make the terminal clearer can be commented if needed
+warnings.filterwarnings("ignore")
+
 
 ## LOAD CATALOGUE
 catalogue_par_file = parameters.folder_output + '/' + parameters.declustering_output

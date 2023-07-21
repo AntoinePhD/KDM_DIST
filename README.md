@@ -3,14 +3,14 @@ KDM (Kohonen map based Declustering Methode) is a declustering algorythm produce
 
 Please cite any usage of this code in your publication
 ## Abstract
-Declustering is in our case providing a classification between non-crisis and crisis earthquakes of a sismological catalague.
-Non crisis event beging event that can't be link to any event prior to it (exemple of possible non_crisis: Lone event, mainshock, foreshock ...) and Crisis event earthquake that can be link to a preveious event (exemple : Aftershocks, Swarms, Geothermally induced event)
+Declustering is in our case providing a classification between non-crisis and crisis earthquakes of a seismological catalogue.
+Non crisis event being event that can't be linked to any event prior to it (example of possible non_crisis: Lone event, main-shock, foreshocks ...) and Crisis event earthquake that can be linked to a previous event (example : Aftershocks, Swarms, Geothermally induced event)
 
-To do that we use an Self Organized map (SOM). SOM [(Vettigli&al)](https://github.com/JustGlowing/minisom) is an unsupervised neural network-based algorithm used to represent a high-dimensional dataset as a low-dimensional (usually 2D) discretised pattern. The dimensionality reduction is performed while maintaining the topological structure of the input data.
+To do that we use a Self Organized map (SOM). SOM [(Vettigli&al)](https://github.com/JustGlowing/minisom) is an unsupervised neural network-based algorithm used to represent a high-dimensional dataset as a low-dimensional (usually 2D) discretised pattern. The dimensionality reduction is performed while maintaining the topological structure of the input data.
 The neural network is trained by competitive learning, as opposed to error-correction learning (e.g. back-propagation with gradient descent). After dimensionality reduction by SOM, each dataset used, defined as vectors of p features measured in n observations, is visualised on a 2D SOM map by clusters of observations. 
 Observations in the proximal clusters have more similar feature values than observations in the distal clusters.
 
-We train the SOM with a 22-dimensional training dataset. Each seismic event is described by an input vector containing the values of the 22 features described above. The SOM learning process leads to the creation of a reduced 2D space representing the high-dimensional dataset.
+We train the SOM with a 22-dimensional training dataset. Each seismic event is described by an input vector containing the values of the 22 features (described in our paper). The SOM learning process leads to the creation of a reduced 2D space representing the high-dimensional dataset.
 All the events are agglomerated on the node that best represents them, creating a cluster of points that should be defined by shorter feature distances than all the other nodes.  
 
 Once the clusters have been identified, we classify each SOM cluster. This interpretation of the SOM output gives a new representation of the studied catalogue by assigning each event to a class: crisis class or non-crisis class.
@@ -21,7 +21,8 @@ To obtain a relevant classification of each event class, we develop a centroid-b
 At the end of the process we obtain an average of 89.5% of balanced accuracy on synthetic catalogues. 
 ## Usage
 ### Requirement
-This code use Python (> version 3) and Fortran 90 
+This code is runable on linux if you use the running file "main.py" (on other system the routine are runnable but not the main file)
+You need Python (> version 3) and Fortran 90 
 The following python library are needed : 
 ```
 subbprocess

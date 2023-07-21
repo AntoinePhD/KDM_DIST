@@ -1,15 +1,11 @@
 ## Use absolute path !!
 cat_raw = '/home/septier/PhdFolder/GOC/waveform_cat_raw.csv' # the catalog to decluster
 cat_formated = 'cat_formated.csv'# the name of the produced formatted catalog
-folder_output = 'output' # /!\ do not change it /!\ input the path of the wanted output folder (it will be created or erased and then created)
-cpu = 8 # Number of cpu usable
-
+folder_output = 'output' # /!\ do not change it /!\ (it will be created or erased and then created)
+cpu = 8 # Number of cpu usable
 
 ## Declustering parameter computation arg
 declustering_output = 'declustering_par.csv'
-
-## Fortran parameters
-taille_cat = 33119 #  size of the catalog must be set manualy in the f90, before runing main.py
 
 ## SOM map parameters
 model_name = 'som_model.p' # name of the output SOM model
