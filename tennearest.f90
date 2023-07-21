@@ -2,12 +2,11 @@
 
 PROGRAM main
     implicit none
+    include 'output/fvar.f'
+    
     !-- Variable definion
     INTEGER :: n, i, j, father_id
     ! TODO : Make the norme automatically updated by the program main.py and also the taille_cat
-    REAL, PARAMETER :: Space_norme = 10.6 ! distance 'max' between two event, in km
-    REAL, PARAMETER :: Time_norme = 28.7 * 24 * 60 * 60 ! time 'max' between two event, in sec
-    INTEGER, PARAMETER :: taille_cat = 1341  !40171 !9073 !33119 ! true cat lenght ATTENTION must be superior or egal to the argument "j"
     DOUBLE PRECISION, DIMENSION(taille_cat) :: Rji, Tji, Tj, Rj, Dji, Dj, F_id
     LOGICAL, DIMENSION(taille_cat) :: mask
     CHARACTER (len = 10) :: line1
